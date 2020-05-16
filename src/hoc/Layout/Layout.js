@@ -1,3 +1,10 @@
+/**
+ * The Layout component
+ *
+ * @author Yurii Huriianov <yuhur1985@gmail.com
+ * @copyright 2020
+ */
+
 import React from 'react';
 
 import Auxx from "../Auxx/Auxx";

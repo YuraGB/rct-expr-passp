@@ -1,0 +1,5 @@
+{
+  "redisStore": {
+    "secret": "test"
+  }
+}
