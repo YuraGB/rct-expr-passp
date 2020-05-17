@@ -17,10 +17,8 @@ const UsersSchema = new Schema({
    },
 
    password: {
-       type: String,
-       required: true
-   },
-    salt: String
+       type: String
+   }
 });
 
 UsersSchema.methods.setPassword = function(password) {

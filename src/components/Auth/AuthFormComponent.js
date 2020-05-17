@@ -4,12 +4,13 @@
  * @author Yurii Huriianov <yuhur1985@gmail.com
  * @copyright 2020
  */
-import React, {useRef} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import { useForm } from "react-hook-form";
 
 import authStyles from './Auth.module.css';
 
@@ -30,14 +31,14 @@ const useStyles = makeStyles((theme) => ({
  */
 const AuthFormComponent = (props) => {
     const classes = useStyles();
-    const ref = useRef();
+    const { register, handleSubmit, errors } = useForm();
 
-    const onSubmit = (e) => {
-        e.preventDefault();
+    const onSubmit = (data) => {
+        axios.get('http://localhost:8080/register', data)
+    };
 
-        const form = new FormData(e.target);
-
-        axios.post('http://localhost:8080/register')
+    const responseFacebook = (response) => {
+        console.log(response);
     };
 
     return (
@@ -46,10 +47,30 @@ const AuthFormComponent = (props) => {
                 <Typography variant="h4" align='center' >
                     Login in
                 </Typography>
-                <form className={classes.root} autoComplete="off" onSubmit={onSubmit}>
-                    <TextField id="user-auth" label="User" autoFocus={true} placeholder={'email or nick name'}/>
-                    <TextField id="password-auth" label="Password" placeholder={'password'} />
-                    <div className="actions">
+                <form
+                    className={classes.root}
+                    autoComplete="off"
+                    action='http://localhost:8080/register'
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+                    <TextField
+                        id="user-auth"
+                        name='name'
+                        inputRef={register({required: true})}
+                        label="User"
+                        autoFocus={true}
+                        placeholder={'email or nick name'}
+                    />
+                    {errors.name && 'The name is required.'}
+                    <TextField
+                        id="password-auth"
+                        name='pass'
+                        inputRef={register({required: true})}
+                        label="Password"
+                        placeholder={'password'}
+                    />
+                    {errors.pass && 'The name is required.'}
+                  <div className="actions">
                         <Button
                             size="small"
                             variant="outlined"
@@ -59,6 +80,7 @@ const AuthFormComponent = (props) => {
                         </Button>
                     </div>
                 </form>
+                <a href="/register">google</a>
             </section>
         </article>
     )

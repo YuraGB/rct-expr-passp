@@ -13,6 +13,7 @@ export default () => {
 
     const options =  {
         useUnifiedTopology: true,
+        useFindAndModify: false,
         useNewUrlParser: true
     };
 

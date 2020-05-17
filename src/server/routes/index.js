@@ -6,12 +6,25 @@
  */
 
 import express from 'express';
+import passport from 'passport';
+import '../passportRoutes';
 
 const router = express.Router();
 
-router.post('/register', (req, res) => {
-    console.log(req.session);
-    res.send('ok');
-});
+router.use(passport.initialize());
+
+router.get('/register',
+    passport.authenticate(
+        'google',
+        {scope: ['profile', 'email']
+        })
+);
+
+router.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/');
+    });
 
 export default router;
