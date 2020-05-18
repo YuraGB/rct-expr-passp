@@ -43,27 +43,11 @@ app.use(function(err, req, res, next) {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-/*
-app.get('/register',
-    passport.authenticate(
-        'google',
-        {scope: ['profile']
-        })
-);
-
-app.get('/google/callback',
-    passport.authenticate('google',  {
-        successRedirect : '/',
-        failureRedirect : '/123',
-        failureFlash: 'Invalid Google credentials.'
-    }));*/
 
 const startServer = () => {
     app.listen(port);
     console.log(`App started on port ${port}`)
 };
-
-
 
 // connect to DB
 // re-connect if there was disconnect

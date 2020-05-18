@@ -30,4 +30,4 @@ const sessionMiddleware = session({
 
 export default (app) => {
     app.use(sessionMiddleware)
-}
+};
