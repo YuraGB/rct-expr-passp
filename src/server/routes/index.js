@@ -7,24 +7,52 @@
 
 import express from 'express';
 import passport from 'passport';
-import '../passportRoutes';
+import '../passportRoutes/GoogleAuth';
+import '../passportRoutes/FacebookAuth'
 
 const router = express.Router();
 
 router.use(passport.initialize());
 
-router.get('/register',
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
+router.get('/google',
     passport.authenticate(
         'google',
         {scope: ['profile', 'email']
-        })
+    })
+);
+
+router.get('/facebook',
+    passport.authenticate('facebook')
 );
 
 router.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
+    passport.authenticate(
+        'google',
+        { failureRedirect: '/', session: true }
+        ),
     function(req, res) {
+        console.log('google', req.session, req.cookies, req.isAuthenticated());
         // Successful authentication, redirect home.
-        res.redirect('/');
+        res.send(req.user);
+    });
+
+router.get('/auth/facebook/callback',
+    passport.authenticate(
+        'facebook',
+        { failureRedirect: '/',session: true}
+        ),
+    function(req, res) {
+        console.log('facebook', req.session, req.cookies, req.isAuthenticated());
+        // Successful authentication, redirect home.
+        res.send('ok');
     });
 
 export default router;

@@ -7,14 +7,14 @@
 
 import express from 'express';
 import path from 'path';
-import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import passport from 'passport'
+import passport from 'passport';
+import cookieParser from 'cookie-parser';
 
 import startSessions from './sessions';
 import connectDb from "./mongoose/mongoose";
 import authRouter from "./routes";
-import './passportRoutes'
+import './passportRoutes/GoogleAuth'
 
 const port = process.env.PORT || 8080;
 

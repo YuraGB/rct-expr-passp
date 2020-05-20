@@ -18,13 +18,14 @@ redisClient.on('error', (err) => {
 
 const sessionMiddleware = session({
     store: new RedisStore({client: redisClient}),
+    name: 'auth',
     secret: config.redisStore.secret,
     resave: true,
     rolling: true,
     saveUninitialized: false,
     cookie: {
         maxAge: 10 * 60 * 1000,
-        httpOnly: false,
+        httpOnly: false
     },
 });
 

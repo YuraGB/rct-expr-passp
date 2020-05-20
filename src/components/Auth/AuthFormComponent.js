@@ -80,7 +80,8 @@ const AuthFormComponent = (props) => {
                         </Button>
                     </div>
                 </form>
-                <a href="/register">google</a>
+                <a href="/google">google</a>
+                <a href="/facebook">facebook</a>
             </section>
         </article>
     )
