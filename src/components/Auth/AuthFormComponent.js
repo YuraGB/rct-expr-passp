@@ -11,6 +11,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from "react-google-login";
+import GitHubLogin from 'react-github-login';
 
 import authStyles from './Auth.module.css';
 
@@ -37,7 +40,7 @@ const AuthFormComponent = (props) => {
         axios.get('http://localhost:8080/register', data)
     };
 
-    const responseFacebook = (response) => {
+    const responseHandler = (response) => {
         console.log(response);
     };
 
@@ -70,6 +73,25 @@ const AuthFormComponent = (props) => {
                         placeholder={'password'}
                     />
                     {errors.pass && 'The name is required.'}
+
+                    <FacebookLogin
+                        appId="931658597293519"
+                        autoLoad={true}
+                        fields="name,email,picture"
+                        onClick={()=>{}}
+                        callback={responseHandler} />
+
+                    <GoogleLogin
+                        clientId="285223978491-v75v6224672gk10bl5tdvq6h2aiqa1o7.apps.googleusercontent.com"
+                        buttonText="Login"
+                        onSuccess={responseHandler}
+                        onFailure={responseHandler}
+                        cookiePolicy={'single_host_origin'}
+                    />
+                    <GitHubLogin clientId="1a7ea99130e78c239d68"
+                                 onSuccess={responseHandler}
+                                 onFailure={responseHandler}/>
+
                   <div className="actions">
                         <Button
                             size="small"
@@ -80,8 +102,6 @@ const AuthFormComponent = (props) => {
                         </Button>
                     </div>
                 </form>
-                <a href="/google">google</a>
-                <a href="/facebook">facebook</a>
             </section>
         </article>
     )
