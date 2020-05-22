@@ -10,6 +10,11 @@ import React from 'react';
 import Layout from "./hoc/Layout/Layout";
 import AuthFormComponent from "./components/Auth/AuthFormComponent";
 
+/**
+ * App
+ *
+ * @return {JSX.Element}
+ */
 function App() {
   return (
       <Layout>

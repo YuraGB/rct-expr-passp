@@ -76,27 +76,28 @@ const AuthFormComponent = (props) => {
                     {errors.pass && 'The name is required.'}
 
                     <FacebookLogin
-                        appId="931658597293519"
+                        appId={process.env.FACEBOOK_APP_ID}
                         autoLoad={true}
                         fields="name,email,picture"
                         onClick={()=>{}}
                         callback={responseHandler} />
 
                     <GoogleLogin
-                        clientId="285223978491-v75v6224672gk10bl5tdvq6h2aiqa1o7.apps.googleusercontent.com"
-                        buttonText="Login"
+                        clientId={process.env.FACEBOOK_APP_ID}                 buttonText="Login"
                         onSuccess={responseHandler}
                         onFailure={responseHandler}
                         cookiePolicy={'single_host_origin'}
                     />
+
                     <GitHubLogin
-                        clientId="1a7ea99130e78c239d68"
+                        clientId={process.env.GITHUB_APP_ID}
                         redirectUri=""
                         onSuccess={responseHandler}
                         onFailure={responseHandler}
                     />
+
                     <LinkedIn
-                        clientId="78r3uaibum65wr"
+                        clientId={process.env.LINKEDIN_APP_ID}
                         onFailure={responseHandler}
                         onSuccess={responseHandler}
                         response_type='code'
@@ -104,7 +105,7 @@ const AuthFormComponent = (props) => {
                         redirectUri="http://localhost:8080/"
                     />
 
-                  <div className="actions">
+                    <div className="actions">
                         <Button
                             size="small"
                             variant="outlined"

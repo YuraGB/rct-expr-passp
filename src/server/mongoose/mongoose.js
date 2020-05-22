@@ -8,6 +8,10 @@
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
 
+/**
+ * Db connection
+ * use mongoose
+ */
 export default () => {
     mongoose.Promise = bluebird;
 

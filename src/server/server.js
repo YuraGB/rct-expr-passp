@@ -8,13 +8,10 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
-import passport from 'passport';
 import cookieParser from 'cookie-parser';
 
 import startSessions from './sessions';
 import connectDb from "./mongoose/mongoose";
-import authRouter from "./routes";
-import './passportRoutes/GoogleAuth'
 
 const port = process.env.PORT || 8080;
 
@@ -32,11 +29,6 @@ app.use(function (req, res, next) {
     console.log(req.url);
     next();
 });
-app.use('/', authRouter);
-
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // error handler
 app.use(function(err, req, res, next) {

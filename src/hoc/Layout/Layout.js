@@ -12,6 +12,12 @@ import HeaderComponent from "../../components/globalComponents/header/HeaderComp
 import StepperComponent from "../../components/StepperComponent/StepperComponent";
 import classes from './Layout.module.css';
 
+/**
+ * Layout
+ *
+ * @param {*} props
+ * @returns {JSX.Element}
+ */
 const Layout = (props) => {
     return (
         <Auxx>
