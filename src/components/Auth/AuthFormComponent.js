@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from "react-google-login";
 import GitHubLogin from 'react-github-login';
+import { LinkedIn } from 'react-linkedin-login-oauth2';
 
 import authStyles from './Auth.module.css';
 
@@ -88,9 +89,20 @@ const AuthFormComponent = (props) => {
                         onFailure={responseHandler}
                         cookiePolicy={'single_host_origin'}
                     />
-                    <GitHubLogin clientId="1a7ea99130e78c239d68"
-                                 onSuccess={responseHandler}
-                                 onFailure={responseHandler}/>
+                    <GitHubLogin
+                        clientId="1a7ea99130e78c239d68"
+                        redirectUri=""
+                        onSuccess={responseHandler}
+                        onFailure={responseHandler}
+                    />
+                    <LinkedIn
+                        clientId="78r3uaibum65wr"
+                        onFailure={responseHandler}
+                        onSuccess={responseHandler}
+                        response_type='code'
+                        scope="r_liteprofile"
+                        redirectUri="http://localhost:8080/"
+                    />
 
                   <div className="actions">
                         <Button
